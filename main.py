@@ -26,7 +26,7 @@ lives_left = 5
 print("Hi, this is a game of Hangman! You will be guessing a word that has exactly", len(word_letters), "letters. Let's begin.")
 
 #for loop to iterate each user's life until user runs out of lives or guesses the word correctly
-for i in range(lives_left):
+while lives_left > 0:
 
     print("Target word so far: ", end="")
     i = 0
@@ -71,17 +71,18 @@ for i in range(lives_left):
         print("Appended: ", user_letter)
 
     if compare_target(word_letters, word_continue) == True:
-        print("YOU HAVE WON *** The target word was: ", word.upper(), " CONGRATULATIONS ***")
-        exit("--THE END--")
+        print("YOU HAVE WON *** The target word was: ", word.upper(), " *** CONGRATULATIONS ***")
+        exit()
 
     #print(word_letters)
 
-    if lives_left == 0:
-        print("You've lost. The word was: ", word)
-        exit("--THE END--")
-
     print("You have ", lives_left, " lives left")
 
+#ending
+if lives_left == 0:
+    print("You've lost. The word was: ", word)
+    print("--THE END--")
+    exit()
 
 endprint = "\n\n>>>|END OF PROGRAM|<<<"
 print(endprint)
