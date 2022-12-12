@@ -10,8 +10,8 @@ def char_check(user_letter):
 
 #compares the target word to the word guessed so far
 def compare_target(one, two):
-    one.sort()
-    two.sort()
+    one = sorted(one)
+    two = sorted(two)
     if one == two:
         print("Sorted TRUE")
         return True

@@ -61,20 +61,26 @@ for i in range(lives_left):
                 print("You've guessed the correct letter! GOOD JOB!")
                 word_continue[letter_index] = user_letter
                 #print("THIS:",word_continue[letter_index])
+    #if it doesn't, take away one life from user
+    else:
+        lives_left = lives_left - 1
 
     #puts user's letter into the list
     if not user_letter in letters_used:
         letters_used.append(user_letter)
         print("Appended: ", user_letter)
 
-    #if compare_target(word_letters, word_continue) == True:
-    #    print("YOU HAVE WON *** The target word was: ", word.upper(), " CONGRATULATIONS ***")
-    print(word_letters)
+    if compare_target(word_letters, word_continue) == True:
+        print("YOU HAVE WON *** The target word was: ", word.upper(), " CONGRATULATIONS ***")
+        exit("--THE END--")
 
-    lives_left = lives_left - 1
-    print("You have ", lives_left, " lives left")
+    #print(word_letters)
+
     if lives_left == 0:
         print("You've lost. The word was: ", word)
+        exit("--THE END--")
+
+    print("You have ", lives_left, " lives left")
 
 
 endprint = "\n\n>>>|END OF PROGRAM|<<<"
