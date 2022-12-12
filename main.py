@@ -1,7 +1,8 @@
 # Hangman from 12 Beginner Python Projects - Coding Course https://www.youtube.com/watch?v=8ext9G7xspg
 
 import random
-
+# Import specific functions from the `function.py` file
+from function import char_check, compare_target
 
 #reads an "words" text file into a list and picks a single play word
 with open('words.txt', "r") as f:
@@ -23,45 +24,57 @@ lives_left = 5
 
 #start of the game
 print("Hi, this is a game of Hangman! You will be guessing a word that has exactly", len(word_letters), "letters. Let's begin.")
-print("Target word so far: ", end="")
-for placeholder in word_continue:
-    print("_ ", end="")
-print("")
 
 #for loop to iterate each user's life until user runs out of lives or guesses the word correctly
 for i in range(lives_left):
 
+    print("Target word so far: ", end="")
+    i = 0
+    for placeholder in word_continue:
+        print(word_continue[i].upper()," ", end="")
+        i = i+1
+    print("")
+
+    #prints used letters so far
+    if any(letters_used):
+        print("Letters used: ", end="")
+        for letter in letters_used:
+            print(letter.upper(), " ", end="")
+        print("")
+
+    #prompts user to guess a letter
     user_letter = str(input("Guess a letter: ")).lower()
 
-    while len(user_letter) != 1 or user_letter.isalpha() == False:
-        print("Please write only one single letter as your guess. Words or numbers are not allowed.")
-        user_letter = str(input("Guess a letter: "))
+    #allowed character check using written function
+    while char_check(user_letter) != True:
+        user_letter = str(input("Guess a letter: ")).lower()
 
     #checks whether the user's inputed letter is already in the list of letters tried
-    if user_letter in letters_used:
-        print("You've already used a letter ", user_letter.upper(), ", pick another one.")
-    else:
-        #puts user's letter into the list
+    while user_letter in letters_used:
+        print("Sorry, but you've already used a letter ", user_letter.upper(), "- pick another one.")
+        user_letter = str(input("Guess a letter: ")).lower()
+
+    #checks whether guessed letters matches any letters in the word and if so, replaces the "_" character with the letter
+    if user_letter in word_letters:
+        for letter_index in range(len(word_letters)):
+            if user_letter == word_letters[letter_index]:
+                print("You've guessed the correct letter! GOOD JOB!")
+                word_continue[letter_index] = user_letter
+                #print("THIS:",word_continue[letter_index])
+
+    #puts user's letter into the list
+    if not user_letter in letters_used:
         letters_used.append(user_letter)
+        print("Appended: ", user_letter)
 
-
-    #checks whether guessed letters match the word
-    #while
-
-    print("Valid input")
-
+    #if compare_target(word_letters, word_continue) == True:
+    #    print("YOU HAVE WON *** The target word was: ", word.upper(), " CONGRATULATIONS ***")
+    print(word_letters)
 
     lives_left = lives_left - 1
     print("You have ", lives_left, " lives left")
     if lives_left == 0:
         print("You've lost. The word was: ", word)
-
-
-exit()
-
-
-
-
 
 
 endprint = "\n\n>>>|END OF PROGRAM|<<<"
