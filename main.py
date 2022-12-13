@@ -4,7 +4,7 @@ import random
 # Import specific functions from the `function.py` file
 from function import char_check, compare_target
 
-#reads an "words" text file into a list and picks a single play word
+#reads a "words" text file into a list and picks a single play word
 with open('words.txt', "r") as f:
     words = f.read().splitlines()
 word: object = random.choice(words)
