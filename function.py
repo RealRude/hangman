@@ -13,8 +13,8 @@ def compare_target(one, two):
     one = sorted(one)
     two = sorted(two)
     if one == two:
-        print("Sorted TRUE")
+        #print("Sorted TRUE")
         return True
     else:
-        print("Sorted FALSE")
+        #print("Sorted FALSE")
         return False

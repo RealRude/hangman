@@ -10,8 +10,8 @@ with open('words.txt', "r") as f:
 word: object = random.choice(words)
 #splits the word into letters to check for each letter
 word_letters = list(word)
-print("Word is", word.upper())
-print("Letters are", word_letters)
+#print("Word is", word.upper())
+#print("Letters are", word_letters)
 
 #creates a placeholder list to input correctly guessed letters
 word_continue = list()
@@ -20,7 +20,7 @@ for placeholder in word_letters:
 #variables to store all used letter guesses
 letters_used = list()
 #number of lives user has at start
-lives_left = 5
+lives_left = 6
 
 #start of the game
 print("Hi, this is a game of Hangman! You will be guessing a word that has exactly", len(word_letters), "letters. Let's begin.")
@@ -64,11 +64,12 @@ while lives_left > 0:
     #if it doesn't, take away one life from user
     else:
         lives_left = lives_left - 1
+        print("Wrong, the word doesn't contain this letter.")
 
     #puts user's letter into the list
     if not user_letter in letters_used:
         letters_used.append(user_letter)
-        print("Appended: ", user_letter)
+        #print("Appended: ", user_letter)
 
     if compare_target(word_letters, word_continue) == True:
         print("YOU HAVE WON *** The target word was: ", word.upper(), " *** CONGRATULATIONS ***")
